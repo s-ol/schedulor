@@ -1,9 +1,8 @@
 dir = (...)\gsub "%.[^%.]+$", ""
 
-import setfenv, getfenv from require dir .. ".compat"
-main = require dir
--- import Curve            from require dir .. ".curve"
+import unpack, setfenv, getfenv from require dir .. ".compat"
 sequences = require dir .. ".sequences"
+main      = require dir
 
 build_value_environment = (curve, schedule) ->
   convert = (func) ->

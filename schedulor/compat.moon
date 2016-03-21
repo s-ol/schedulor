@@ -22,7 +22,11 @@ getfenv = getfenv or (fn) ->
       break
     i = i + 1
 
+unpack = unpack or table.unpack
+
+
 {
   :setfenv,
-  :getfenv
+  :getfenv,
+  :unpack
 }

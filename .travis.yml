@@ -18,4 +18,6 @@ install:
   - luarocks install moonscript
 
 script:
+  - pwd
+  - ls
   - busted --verbose

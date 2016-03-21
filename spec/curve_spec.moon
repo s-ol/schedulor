@@ -17,7 +17,7 @@ describe "Curve", ->
   setup ->
     export *
     import Curve from require "schedulor.curve"
-    sequences = require "schedulor.sequences"
+    import unpack from require "schedulor.compat"
 
   it "is instantiable", ->
     local curve
@@ -195,6 +195,7 @@ describe "Curve", ->
       }
 
       orig = Curve ->
+        _ENV or= getfenv!
         for c in *calls do
           _ENV[c._] unpack c
 
@@ -203,6 +204,7 @@ describe "Curve", ->
         calls = {(i+2)%8 + 1, v for i, v in ipairs calls}
 
         rotated = Curve ->
+          _ENV or= getfenv!
           for c in *calls
             _ENV[c._] unpack c
 
