@@ -73,8 +73,3 @@ describe "Schedule", ->
 
     it "which supports everything Curve does", ->
       -- TODO
-
-  it "has a debug draw method", ->
-    schedule = Schedule ->
-
-    assert.is_function schedule.debug_draw

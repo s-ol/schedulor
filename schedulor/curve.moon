@@ -73,6 +73,28 @@ class Curve
     @value = @eval @pos
     @value
 
+  -- TODO: bad performance instead of terrible performance
+  debug_draw: (max=1, segments=40, width=love.graphics.getWidth!, height=love.graphics.getHeight! / 3) =>
+    lg = love.graphics
+
+    return unless @points[1]
+    endt = @points[#@points].end_time + .5
+    scale = height / max
+
+    lg.push!
+    lg.translate 0, height
+    lg.scale 1, -1
+    lg.line @pos / endt * width, height/6, @pos / endt * width, 5*height/6
+
+    lx, ly = 0, 0
+    for t=0,endt,endt/segments
+      x, y = lx + width/segments, scale * @eval t
+      lg.line lx, ly, x, y
+      lx, ly = x, y
+
+    lg.pop!
+
+
 main.Curve = Curve
 
 {
