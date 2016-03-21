@@ -1,4 +1,4 @@
-schedulör
+schedulör [![](https://api.travis-ci.org/s-ol/schedulor.svg)](//travis-ci.org/s-ol/schedulor)
 =========
 
 A scheduling and tweening library.
