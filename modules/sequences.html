@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>schedulör</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Functions">Functions</a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/compat.html">compat</a></li>
+  <li><a href="../modules/curve.html">curve</a></li>
+  <li><a href="../modules/DSL.html">DSL</a></li>
+  <li><a href="../modules/schedule.html">schedule</a></li>
+  <li><strong>sequences</strong></li>
+</ul>
+<h2>Topics</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>sequences</code></h1>
+<p>the sequences available for the <a href="../modules/DSL.html#">DSL</a>.</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Functions">Functions</a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#linear">linear (time, value)</a></td>
+	<td class="summary">alias for linear <a href="../modules/sequences.html#ease">ease</a></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#quad">quad (time, value)</a></td>
+	<td class="summary">alias for quadracic <a href="../modules/sequences.html#ease">ease</a></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#cubic">cubic (time, value)</a></td>
+	<td class="summary">alias for cubic <a href="../modules/sequences.html#ease">ease</a></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#untl">untl (time, value)</a></td>
+	<td class="summary">set to <code>value</code>, from the last CP on until <code>time</code> seconds</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#jump">jump (time, value)</a></td>
+	<td class="summary">leave the last value until <code>time</code> secoonds, then jump to <code>value</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#stay">stay (time)</a></td>
+	<td class="summary">stay at the last value until <code>time</code></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#ease">ease (time[, method], value)</a></td>
+	<td class="summary">ease from the last value to <code>value</code> until <code>time</code>
+ interpolate using the function <code>f</code> (or specified easing method)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#set">set (time, value)</a></td>
+	<td class="summary">alias for <a href="../modules/sequences.html#jump">jump</a></td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
+
+    <dl class="function">
+    <dt>
+    <a name = "linear"></a>
+    <strong>linear (time, value)</strong>
+    </dt>
+    <dd>
+    alias for linear <a href="../modules/sequences.html#ease">ease</a>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "quad"></a>
+    <strong>quad (time, value)</strong>
+    </dt>
+    <dd>
+    alias for quadracic <a href="../modules/sequences.html#ease">ease</a>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "cubic"></a>
+    <strong>cubic (time, value)</strong>
+    </dt>
+    <dd>
+    alias for cubic <a href="../modules/sequences.html#ease">ease</a>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "untl"></a>
+    <strong>untl (time, value)</strong>
+    </dt>
+    <dd>
+    set to <code>value</code>, from the last CP on until <code>time</code> seconds
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "jump"></a>
+    <strong>jump (time, value)</strong>
+    </dt>
+    <dd>
+    leave the last value until <code>time</code> secoonds, then jump to <code>value</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "stay"></a>
+    <strong>stay (time)</strong>
+    </dt>
+    <dd>
+    stay at the last value until <code>time</code>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "ease"></a>
+    <strong>ease (time[, method], value)</strong>
+    </dt>
+    <dd>
+    ease from the last value to <code>value</code> until <code>time</code>
+ interpolate using the function <code>f</code> (or specified easing method)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">method</span>
+
+
+
+         (<em>optional</em>)
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "set"></a>
+    <strong>set (time, value)</strong>
+    </dt>
+    <dd>
+    alias for <a href="../modules/sequences.html#jump">jump</a>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">time</span>
+
+
+
+        </li>
+        <li><span class="parameter">value</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-03-22 03:02:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<head>
+    <title>Reference</title>
+    <link rel="stylesheet" href="../ldoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="container">
+
+<div id="product">
+	<div id="product_logo"></div>
+	<div id="product_name"><big><b></b></big></div>
+	<div id="product_description"></div>
+</div> <!-- id="product" -->
+
+
+<div id="main">
+
+
+<!-- Menu -->
+
+<div id="navigation">
+<br/>
+<h1>schedulör</h1>
+
+<ul>
+  <li><a href="../index.html">Index</a></li>
+</ul>
+
+<h2>Contents</h2>
+<ul>
+<li><a href="#Class_Curve">Class Curve </a></li>
+</ul>
+
+
+<h2>Modules</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../modules/compat.html">compat</a></li>
+  <li><strong>curve</strong></li>
+  <li><a href="../modules/DSL.html">DSL</a></li>
+  <li><a href="../modules/schedule.html">schedule</a></li>
+  <li><a href="../modules/sequences.html">sequences</a></li>
+</ul>
+<h2>Topics</h2>
+<ul class="$(kind=='Topics' and '' or 'nowrap'">
+  <li><a href="../topics/README.md.html">README</a></li>
+</ul>
+
+</div>
+
+<div id="content">
+
+<h1>Module <code>curve</code></h1>
+<p>Curve-related things</p>
+<p>
+
+</p>
+
+
+<h2><a href="#Class_Curve">Class Curve </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#Curve.schedule">Curve.schedule (self, schedule)</a></td>
+	<td class="summary">schedule using the function <a href="../modules/schedule.html#">schedule</a></td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.cp_at">Curve.cp_at (self, t)</a></td>
+	<td class="summary">return the Control Point at <code>t</code> seconds</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.cp_before">Curve.cp_before (self, t, create)</a></td>
+	<td class="summary">return the last Control Point before <code>t</code> seconds
+ may create a Control Point if <code>create</code> is true</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.add_cp">Curve.add_cp (self, t, new_cp)</a></td>
+	<td class="summary">add a Control Point at <code>t</code> seconds
+ <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/curve.html#Curve.eval">eval</a> (returns value for input in range 0-1)</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.eval">Curve.eval (self, t)</a></td>
+	<td class="summary">evaluate the Curve at <code>t</code> seconds</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.update">Curve.update (self, dt)</a></td>
+	<td class="summary">update the Curve by <code>dt</code> seconds</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#Curve.debug_draw">Curve.debug_draw (self, max, segments, width, height)</a></td>
+	<td class="summary">debug-draw the Curve on screen (love2d only)
+ TODO: bad performance instead of terrible performance</td>
+	</tr>
+</table>
+
+<br/>
+<br/>
+
+
+    <h2 class="section-header has-description"><a name="Class_Curve"></a>Class Curve </h2>
+
+          <div class="section-description">
+          a curve mapping a value over time
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "Curve.schedule"></a>
+    <strong>Curve.schedule (self, schedule)</strong>
+    </dt>
+    <dd>
+    schedule using the function <a href="../modules/schedule.html#">schedule</a>
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">schedule</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+    <h3>See also:</h3>
+    <ul>
+         <a href="../modules/DSL.html#">DSL</a>
+    </ul>
+
+
+</dd>
+    <dt>
+    <a name = "Curve.cp_at"></a>
+    <strong>Curve.cp_at (self, t)</strong>
+    </dt>
+    <dd>
+    return the Control Point at <code>t</code> seconds
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">t</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Curve.cp_before"></a>
+    <strong>Curve.cp_before (self, t, create)</strong>
+    </dt>
+    <dd>
+    return the last Control Point before <code>t</code> seconds
+ may create a Control Point if <code>create</code> is true
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">t</span>
+
+
+
+        </li>
+        <li><span class="parameter">create</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Curve.add_cp"></a>
+    <strong>Curve.add_cp (self, t, new_cp)</strong>
+    </dt>
+    <dd>
+    add a Control Point at <code>t</code> seconds
+ <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/curve.html#Curve.eval">eval</a> (returns value for input in range 0-1)
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">t</span>
+
+
+
+        </li>
+        <li><span class="parameter">new_cp</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Curve.eval"></a>
+    <strong>Curve.eval (self, t)</strong>
+    </dt>
+    <dd>
+    evaluate the Curve at <code>t</code> seconds
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">t</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Curve.update"></a>
+    <strong>Curve.update (self, dt)</strong>
+    </dt>
+    <dd>
+    update the Curve by <code>dt</code> seconds
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">dt</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "Curve.debug_draw"></a>
+    <strong>Curve.debug_draw (self, max, segments, width, height)</strong>
+    </dt>
+    <dd>
+    debug-draw the Curve on screen (love2d only)
+ TODO: bad performance instead of terrible performance
+
+
+    <h3>Parameters:</h3>
+    <ul>
+        <li><span class="parameter">self</span>
+
+
+
+        </li>
+        <li><span class="parameter">max</span>
+
+
+
+        </li>
+        <li><span class="parameter">segments</span>
+
+
+
+        </li>
+        <li><span class="parameter">width</span>
+
+
+
+        </li>
+        <li><span class="parameter">height</span>
+
+
+
+        </li>
+    </ul>
+
+
+
+
+
+</dd>
+</dl>
+
+
+</div> <!-- id="content" -->
+</div> <!-- id="main" -->
+<div id="about">
+<i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
+<i style="float:right;">Last updated 2016-03-22 03:02:49 </i>
+</div> <!-- id="about" -->
+</div> <!-- id="container" -->
+</body>
+</html>
