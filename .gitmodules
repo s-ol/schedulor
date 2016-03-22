@@ -1,0 +1,4 @@
+[submodule "doc"]
+	path = doc
+	url = https://github.com/s-ol/schedulor.git
+	branch = gh-pages

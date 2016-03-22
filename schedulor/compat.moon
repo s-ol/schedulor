@@ -1,3 +1,10 @@
+--- a lua version compatibility layer
+-- @module compat
+
+--- set the function `fn`s execution environment to `env`
+-- implementation for Lua 5.1 and above
+-- @param fn the function
+-- @param env the environment
 setfenv = setfenv or (fn, env) ->
   i = 1
   while true
@@ -12,6 +19,9 @@ setfenv = setfenv or (fn, env) ->
     i = i + 1
   fn
 
+--- get `fn`s execution environment
+-- @param fn the function
+-- @return the environment table
 getfenv = getfenv or (fn) ->
   i = 1
   while true
@@ -22,8 +32,10 @@ getfenv = getfenv or (fn) ->
       break
     i = i + 1
 
+--- unpack a table
+-- @param tbl the table to unpack
+-- @return the integer-indexed values in `tbl`
 unpack = unpack or table.unpack
-
 
 {
   :setfenv,

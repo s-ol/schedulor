@@ -1,9 +1,15 @@
+--- Curve-related things
+-- @module curve
+
 dir = (...)\gsub "%.[^%.]+$", ""
 
 import build_value_environment from require dir .. ".dsl"
 main = require dir
 
+--- a curve mapping a value over time
 class Curve
+  --- create a new Curve
+  -- `initial` and `schedule` are both optional
   new: (@initial, schedule) =>
     @pos = 0
     @points = {}
@@ -15,17 +21,22 @@ class Curve
     if schedule
       @schedule schedule
 
+  --- schedule using the function `schedule`
+  -- @see DSL
   schedule: (schedule) =>
     build_value_environment @, schedule
     schedule!
 
     @update 0
 
+  --- return the Control Point at `t` seconds
   cp_at: (t) =>
     for cp in *@points
       if cp.end_time >= t
         return cp
 
+  --- return the last Control Point before `t` seconds
+  -- may create a Control Point if `create` is true
   cp_before: (t, create=false) =>
     if create and not @points[1]
       return @add_cp 0, val: @initial, eval: -> @initial
@@ -44,6 +55,8 @@ class Curve
 
     return @points[#@points]
 
+  --- add a Control Point at `t` seconds
+  -- `new_cp` is a table containing `val` (reference value for next CP) and `eval` (returns value for input in range 0-1)
   add_cp: (t, new_cp) =>
     new_cp.end_time = t
     for i, cp in ipairs @points
@@ -57,6 +70,7 @@ class Curve
     table.insert @points, new_cp
     new_cp
 
+  --- evaluate the Curve at `t` seconds
   eval: (t) =>
     last_end = 0
     for cp in *@points
@@ -68,11 +82,13 @@ class Curve
     if @points[1]
       @points[#@points].val
 
+  --- update the Curve by `dt` seconds
   update: (dt) =>
     @pos += dt
     @value = @eval @pos
     @value
 
+  --- debug-draw the Curve on screen (love2d only)
   -- TODO: bad performance instead of terrible performance
   debug_draw: (max=1, segments=40, width=love.graphics.getWidth!, height=love.graphics.getHeight! / 3) =>
     lg = love.graphics
