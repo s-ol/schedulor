@@ -2,7 +2,7 @@ describe "Curve", ->
   export check_eval, check_iter, check
   check_eval = (curve, expected) ->
     for time, value in pairs expected
-      assert.near value, curve\eval(time), .0001
+      assert.near value, curve\eval(time), .001
 
   check_iter = (curve, expected) ->
     points = [{:time, :value} for time, value in pairs expected]
@@ -10,7 +10,7 @@ describe "Curve", ->
 
     time = 0
     for point in *points
-      assert.near point.value, curve\update(point.time - time), .0001
+      assert.near point.value, curve\update(point.time - time), .001, "iter '#{key}' at #{point.time}/#{curve.pos}"
       time = point.time
 
   check = (...) ->

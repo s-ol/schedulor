@@ -17,9 +17,9 @@ describe "Schedule", ->
 
     time = 0
     for point in *points
-      sched\update (point.time - time)
+      sched\update point.time - time
       for key, value in pairs point.values
-        assert.near value, sched.target[key], .001
+        assert.near value, sched.target[key], .001, "iter '#{key}' at #{point.time}"
       time = point.time
 
   check = (...) ->
