@@ -13,7 +13,7 @@ describe "Schedule", ->
         points[t][key] = v
 
     points = [{:time, :values} for time, values in pairs points]
-    table.sort points, (a, b) -> a.time > b.time
+    table.sort points, (a, b) -> a.time < b.time
 
     time = 0
     for point in *points
@@ -42,6 +42,11 @@ describe "Schedule", ->
     schedule = Schedule target
 
     assert.equal target, schedule.target
+
+  it "creates a new target table per default", ->
+    schedule = Schedule!
+
+    assert.is_table schedule.target
 
   describe "has a #DSL", ->
     it "which can be programmed with a schedule function", ->

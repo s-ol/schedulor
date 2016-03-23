@@ -25,7 +25,7 @@ sequences = {
   untl: (curve, time, value) ->
     curve\add_cp time, val: value, eval: (t) -> value
 
-  --- leave the last value until `time` secoonds, then jump to `value`
+  --- leave the last value until `time` seconds, then jump to `value`
   -- @param time
   -- @param value
   jump: (curve, time, value) ->
@@ -40,7 +40,7 @@ sequences = {
     curve\add_cp time, val: prev_val, eval: (t) ->
       curve\cp_before(time, true).val
 
-  --- ease from the last value to `value` until `time`
+  --- ease from the last value to `value` until `time`  
   -- interpolate using the function `f` (or specified easing method)
   -- @param time
   -- @param[opt] method

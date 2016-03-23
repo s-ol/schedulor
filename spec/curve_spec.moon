@@ -5,10 +5,13 @@ describe "Curve", ->
       assert.near value, curve\eval(time), .0001
 
   check_iter = (curve, expected) ->
-    last_time = 0
-    for time, value in pairs expected
-      assert.near value, curve\update(time - last_time), .0001
-      last_time = time
+    points = [{:time, :value} for time, value in pairs expected]
+    table.sort points, (a, b) -> a.time < b.time
+
+    time = 0
+    for point in *points
+      assert.near point.value, curve\update(point.time - time), .0001
+      time = point.time
 
   check = (...) ->
     check_eval ...

@@ -8,9 +8,11 @@ main = require dir
 
 --- a curve mapping a value over time
 class Curve
-  --- create a new Curve
+  --- create a new Curve.  
   -- `initial` and `schedule` are both optional
-  new: (@initial, schedule) =>
+  new: (initial, schedule) =>
+    @initial = initial
+
     @pos = 0
     @points = {}
 
@@ -35,7 +37,7 @@ class Curve
       if cp.end_time >= t
         return cp
 
-  --- return the last Control Point before `t` seconds
+  --- return the last Control Point before `t` seconds  
   -- may create a Control Point if `create` is true
   cp_before: (t, create=false) =>
     if create and not @points[1]
@@ -55,7 +57,7 @@ class Curve
 
     return @points[#@points]
 
-  --- add a Control Point at `t` seconds
+  --- add a Control Point at `t` seconds  
   -- `new_cp` is a table containing `val` (reference value for next CP) and `eval` (returns value for input in range 0-1)
   add_cp: (t, new_cp) =>
     new_cp.end_time = t
@@ -88,7 +90,7 @@ class Curve
     @value = @eval @pos
     @value
 
-  --- debug-draw the Curve on screen (love2d only)
+  --- debug-draw the Curve on screen (love2d only)  
   -- TODO: bad performance instead of terrible performance
   debug_draw: (max=1, segments=40, width=love.graphics.getWidth!, height=love.graphics.getHeight! / 3) =>
     lg = love.graphics
@@ -109,7 +111,6 @@ class Curve
       lx, ly = x, y
 
     lg.pop!
-
 
 main.Curve = Curve
 
