@@ -32,7 +32,8 @@
 
 <h2>Contents</h2>
 <ul>
-<li><a href="#Class_Loop">Class Loop </a></li>
+<li><a href="#Functions">Functions</a></li>
+<li><a href="#Class_LoopSchedule">Class LoopSchedule </a></li>
 </ul>
 
 
@@ -61,32 +62,44 @@
 </p>
 
 
-<h2><a href="#Class_Loop">Class Loop </a></h2>
+<h2><a href="#Functions">Functions</a></h2>
 <table class="function_list">
 	<tr>
-	<td class="name" nowrap><a href="#Loop.new">Loop.new (self, length, target, schedule)</a></td>
-	<td class="summary">create a new Loop.</td>
-	</tr>
-	<tr>
-	<td class="name" nowrap><a href="#Loop.cp_at">Loop.cp_at (self, t)</a></td>
+	<td class="name" nowrap><a href="#cp_at">cp_at (self, t)</a></td>
 	<td class="summary">return the Control Point at <code>t</code> (normalized)</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Loop.cp_before">Loop.cp_before (self, t, create)</a></td>
+	<td class="name" nowrap><a href="#cp_before">cp_before (self, t, create)</a></td>
 	<td class="summary">return the last Control Point before <code>t</code> (normalized) <br/>
  may create a Control Point if <code>create</code> is true</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Loop.add_cp">Loop.add_cp (self, t, new_cp)</a></td>
+	<td class="name" nowrap><a href="#add_cp">add_cp (self, t, new_cp)</a></td>
 	<td class="summary">add a Control Point at <code>t</code> (normalized) <br/>
- <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/loop.html#Loop.eval">eval</a> (returns value for input in range 0-1)</td>
+ <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/loop.html#eval">eval</a> (returns value for input in range 0-1)</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Loop.eval">Loop.eval (self, t)</a></td>
+	<td class="name" nowrap><a href="#eval">eval (self, t)</a></td>
+	<td class="summary">evaluate the Curve at <code>t</code> seconds</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#debug_draw">debug_draw (self, max, segments, width, height)</a></td>
+	<td class="summary">debug-draw the Curve on screen (love2d only) <br/>
+ TODO: bad performance instead of terrible performance</td>
+	</tr>
+</table>
+<h2><a href="#Class_LoopSchedule">Class LoopSchedule </a></h2>
+<table class="function_list">
+	<tr>
+	<td class="name" nowrap><a href="#LoopSchedule.new">LoopSchedule.new (self, length, target, schedule)</a></td>
+	<td class="summary">create a new Loop.</td>
+	</tr>
+	<tr>
+	<td class="name" nowrap><a href="#LoopSchedule.eval">LoopSchedule.eval (self, t)</a></td>
 	<td class="summary">evaluate the Loop at <code>t</code> seconds</td>
 	</tr>
 	<tr>
-	<td class="name" nowrap><a href="#Loop.update">Loop.update (self, dt)</a></td>
+	<td class="name" nowrap><a href="#LoopSchedule.update">LoopSchedule.update (self, dt)</a></td>
 	<td class="summary">update the Loop by <code>dt</code> seconds</td>
 	</tr>
 </table>
@@ -95,30 +108,12 @@
 <br/>
 
 
-    <h2 class="section-header has-description"><a name="Class_Loop"></a>Class Loop </h2>
+    <h2 class="section-header "><a name="Functions"></a>Functions</h2>
 
-          <div class="section-description">
-          a curve mapping a value over time
-          </div>
     <dl class="function">
     <dt>
-    <a name = "Loop.new"></a>
-    <strong>Loop.new (self, length, target, schedule)</strong>
-    </dt>
-    <dd>
-    create a new Loop. <br/>
- <code>target</code> and <a href="../modules/schedule.html#">schedule</a> are both optional
-
-
-
-
-
-
-
-</dd>
-    <dt>
-    <a name = "Loop.cp_at"></a>
-    <strong>Loop.cp_at (self, t)</strong>
+    <a name = "cp_at"></a>
+    <strong>cp_at (self, t)</strong>
     </dt>
     <dd>
     return the Control Point at <code>t</code> (normalized)
@@ -131,8 +126,8 @@
 
 </dd>
     <dt>
-    <a name = "Loop.cp_before"></a>
-    <strong>Loop.cp_before (self, t, create)</strong>
+    <a name = "cp_before"></a>
+    <strong>cp_before (self, t, create)</strong>
     </dt>
     <dd>
     return the last Control Point before <code>t</code> (normalized) <br/>
@@ -146,12 +141,12 @@
 
 </dd>
     <dt>
-    <a name = "Loop.add_cp"></a>
-    <strong>Loop.add_cp (self, t, new_cp)</strong>
+    <a name = "add_cp"></a>
+    <strong>add_cp (self, t, new_cp)</strong>
     </dt>
     <dd>
     add a Control Point at <code>t</code> (normalized) <br/>
- <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/loop.html#Loop.eval">eval</a> (returns value for input in range 0-1)
+ <code>new_cp</code> is a table containing <code>val</code> (reference value for next CP) and <a href="../modules/loop.html#eval">eval</a> (returns value for input in range 0-1)
 
 
 
@@ -161,8 +156,59 @@
 
 </dd>
     <dt>
-    <a name = "Loop.eval"></a>
-    <strong>Loop.eval (self, t)</strong>
+    <a name = "eval"></a>
+    <strong>eval (self, t)</strong>
+    </dt>
+    <dd>
+    evaluate the Curve at <code>t</code> seconds
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "debug_draw"></a>
+    <strong>debug_draw (self, max, segments, width, height)</strong>
+    </dt>
+    <dd>
+    debug-draw the Curve on screen (love2d only) <br/>
+ TODO: bad performance instead of terrible performance
+
+
+
+
+
+
+
+</dd>
+</dl>
+    <h2 class="section-header has-description"><a name="Class_LoopSchedule"></a>Class LoopSchedule </h2>
+
+          <div class="section-description">
+          a curve mapping a value over time
+          </div>
+    <dl class="function">
+    <dt>
+    <a name = "LoopSchedule.new"></a>
+    <strong>LoopSchedule.new (self, length, target, schedule)</strong>
+    </dt>
+    <dd>
+    create a new Loop. <br/>
+ <code>target</code> and <a href="../modules/schedule.html#">schedule</a> are both optional
+
+
+
+
+
+
+
+</dd>
+    <dt>
+    <a name = "LoopSchedule.eval"></a>
+    <strong>LoopSchedule.eval (self, t)</strong>
     </dt>
     <dd>
     evaluate the Loop at <code>t</code> seconds
@@ -175,8 +221,8 @@
 
 </dd>
     <dt>
-    <a name = "Loop.update"></a>
-    <strong>Loop.update (self, dt)</strong>
+    <a name = "LoopSchedule.update"></a>
+    <strong>LoopSchedule.update (self, dt)</strong>
     </dt>
     <dd>
     update the Loop by <code>dt</code> seconds
@@ -195,7 +241,7 @@
 </div> <!-- id="main" -->
 <div id="about">
 <i>generated by <a href="http://github.com/stevedonovan/LDoc">LDoc 1.4.3</a></i>
-<i style="float:right;">Last updated 2016-03-23 23:52:00 </i>
+<i style="float:right;">Last updated 2016-03-24 01:03:42 </i>
 </div> <!-- id="about" -->
 </div> <!-- id="container" -->
 </body>
