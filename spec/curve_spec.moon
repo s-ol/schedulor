@@ -176,6 +176,8 @@ describe "Curve", ->
         stay  4
         untl  5, 0
 
+        set   5, 3
+
       check curve,
         [0]: 0, [0.5]: 0  -- set
         [1]: 2,           -- set
@@ -183,15 +185,15 @@ describe "Curve", ->
         [2.5]: 1, [3]: 9  -- jump
         [3.5]: 9, [4]: 9  -- stay
         [4.5]: 0, [5]: 0  -- untl
-        [7]: 0
+        [7]: 3
 
     it "which doesn't care in what order the scheduling happens", ->
       calls = {
-        { _: "set",   0, 0 },
+        { _: "untl",   0, 0 },
         { _: "ease",  4, 1 },
         { _: "ease",  2, 3 },
         { _: "untl",  3, 0 },
-        { _: "set",   1, 2 },
+        { _: "jump",   1, 2 },
         { _: "untl",  7, 1 },
         { _: "jump",  6, 9 },
         { _: "stay",  5    }
@@ -231,7 +233,7 @@ describe "Curve", ->
         [.2]: 3, [.3]: 3
         [.5]: 8
         [1]: 1
-        [2]: 0
+        [2]: 2
         [2.5]: 1, [3]: 1
         [4]: 1
 

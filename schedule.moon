@@ -3,6 +3,7 @@
 
 dir = (...)\gsub "%.[^%.]+$", ""
 
+import Curve                      from require dir .. ".curve"
 import build_keyvalue_environment from require dir .. ".dsl"
 
 --- a schedule for tweening a table
@@ -22,7 +23,7 @@ class Schedule
   -- @see DSL
   schedule: (schedule) =>
     -- set DSL environment
-    build_keyvalue_environment @curves, schedule
+    build_keyvalue_environment @curves, schedule, Curve
     schedule!
 
     @update 0

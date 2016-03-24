@@ -77,6 +77,8 @@ class Curve
     last_end = 0
     for cp in *@points
       if cp.end_time >= t
+        if cp.end_time == t
+          return cp.eval 1
         return cp.eval (t - last_end) / (cp.end_time - last_end)
 
       last_end = cp.end_time
@@ -104,7 +106,7 @@ class Curve
     lg.scale 1, -1
     lg.line @pos / endt * width, height/6, @pos / endt * width, 5*height/6
 
-    lx, ly = 0, 0
+    lx, ly = 0, scale * @eval t
     for t=0,endt,endt/segments
       x, y = lx + width/segments, scale * @eval t
       lg.line lx, ly, x, y

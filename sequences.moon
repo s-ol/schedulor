@@ -16,6 +16,12 @@ easing_methods = {
   -- @param time
   -- @param value
   cubic: (t) -> t * t * t
+
+  --- alias for sinusoid `ease`
+  -- @param time
+  -- @param value
+  sine: (t) -> 1 - math.cos t * math.pi/2
+  cosine: (t) -> math.cos (1-t) * math.pi/2
 }
 
 sequences = {
@@ -29,6 +35,20 @@ sequences = {
   -- @param time
   -- @param value
   jump: (curve, time, value) ->
+    curve\add_cp time, val: value, eval: (t) ->
+      if t == 1 then value
+      else
+        curve\cp_before(time, true).val
+
+  --- set an existing Control Points reference value to `value`  
+  -- if no CP at `time` acts like `jump`
+  -- @param time
+  -- @param value
+  set: (curve, time, value) ->
+    if cp = curve\cp_at time
+      cp.val = value
+      return cp
+
     curve\add_cp time, val: value, eval: (t) ->
       if t == 1 then value
       else
@@ -60,12 +80,6 @@ sequences = {
       delta = value - prev.val
       prev.val + delta * f t
 }
-
---- alias for `jump`
--- @param time
--- @param value
--- @function set
-sequences.set = sequences.jump
 
 for name, method in pairs easing_methods
   sequences[name] = (curve, time, value) ->

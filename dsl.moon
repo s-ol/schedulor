@@ -47,14 +47,14 @@ build_value_environment = (curve, schedule) ->
 
 --- build a function environment that runs key-value
 -- @see sequences
-build_keyvalue_environment = (curves, schedule) ->
+build_keyvalue_environment = (curves, schedule, curve_class) ->
   convert = (func) ->
     (...) ->
       args = {...}
       if #args > 1
         for name, value in pairs args[#args]
           args[#args] = value
-          curves[name] = main.curve.Curve! unless curves[name]
+          curves[name] = curve_class! unless curves[name]
           func curves[name], unpack args
       else
         error "invalid arguments"
