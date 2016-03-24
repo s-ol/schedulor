@@ -72,10 +72,10 @@ class LoopSchedule extends Schedule
     @length = length
     @target = target or {}
     @schedule = schedule or ->
+    @curves = {}
 
     @pos = 0
     @loops = 0
-    @curves = {}
 
     build_keyvalue_environment @curves, @schedule, LoopCurve
     @schedule!
@@ -93,6 +93,7 @@ class LoopSchedule extends Schedule
         curve.pos -= 1
 
       @loops += 1
+      for k, curve in pairs @curves do @curves[k] = nil
       @schedule!
 
     super dt

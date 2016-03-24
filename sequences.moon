@@ -21,8 +21,31 @@ easing_methods = {
   -- @param time
   -- @param value
   sine: (t) -> 1 - math.cos t * math.pi/2
-  cosine: (t) -> math.cos (1-t) * math.pi/2
 }
+
+get_easing_method = (name) ->
+  one, two = name\match "^(.*)%+(.*)$"
+  prefix, postfix = name\match("^(.*)%-([^-]*)$")
+
+  if one
+    one = get_easing_method one
+    two = get_easing_method two
+    (t) ->
+      if t < .5
+        .5 * one t
+      else
+        .5 + .5 * two t - .5
+  elseif prefix
+    method = get_easing_method prefix
+    switch postfix
+      when "out"
+        method
+      when "in"
+        (t) -> 1 - method 1 - t
+      when "inout"
+        get_easing_method "#{prefix}-in+#{prefix}-out"
+  else
+    easing_methods[name]
 
 sequences = {
   --- set to `value`, from the last CP on until `time` seconds
@@ -71,9 +94,7 @@ sequences = {
       f = easing_methods.linear
 
     if "string" == type f
-      if not easing_methods[f]
-        error "no such easing method: #{f}"
-      f = easing_methods[f]
+      f = get_easing_method f
 
     curve\add_cp time, val: value, eval: (t) ->
       prev, new = curve\cp_before time, true
