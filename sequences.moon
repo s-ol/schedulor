@@ -1,6 +1,10 @@
 --- the sequences available for the `DSL`.
 -- @module sequences
 
+dir = (...)\gsub "%.[^%.]+$", ""
+
+import rgb2hsl, hsl2rgb from require dir .. ".color"
+
 easing_methods = {
   --- alias for linear `ease`
   -- @param time
@@ -91,15 +95,38 @@ sequences = {
   ease: (curve, time, f, value) ->
     if not value
       value = f
-      f = easing_methods.linear
+      f = "linear"
 
     if "string" == type f
       f = get_easing_method f
 
     curve\add_cp time, val: value, eval: (t) ->
-      prev, new = curve\cp_before time, true
+      prev = curve\cp_before time, true
       delta = value - prev.val
       prev.val + delta * f t
+
+  --- ease from the last RGB color to `value` until `time`  
+  -- interpolate in HSL color-space using the function `f` (or specified easing method)
+  -- @param time
+  -- @param[opt] method
+  -- @param value
+  colorease: (curve, time, f, value) ->
+    if not value
+      value = f
+      f = "linear"
+
+    if "string" == type f
+      f = get_easing_method f
+
+    th,ts,tv = rgb2hsl unpack value
+    curve\add_cp time, val: value, eval: (t) ->
+      h,s,v = rgb2hsl unpack curve\cp_before(t, true).val
+      dh,ds,dv = th-h, ts-s, tv-v
+      t = f t
+      { hsl2rgb h + dh * t,
+                s + ds * t,
+                v + dv * t
+      }
 }
 
 for name, method in pairs easing_methods
